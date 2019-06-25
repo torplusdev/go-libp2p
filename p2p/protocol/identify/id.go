@@ -21,6 +21,7 @@ import (
 	logging "github.com/ipfs/go-log"
 
 	ma "github.com/multiformats/go-multiaddr"
+	manet "github.com/multiformats/go-multiaddr-net"
 	msmux "github.com/multiformats/go-multistream"
 )
 
@@ -277,9 +278,13 @@ func (ids *IDService) populateMessage(mes *pb.Identify, c network.Conn) {
 
 	// set listen addrs, get our latest addrs from Host.
 	laddrs := ids.Host.Addrs()
-	mes.ListenAddrs = make([][]byte, len(laddrs))
-	for i, addr := range laddrs {
-		mes.ListenAddrs[i] = addr.Bytes()
+	viaLoopback := manet.IsIPLoopback(c.LocalMultiaddr())
+	mes.ListenAddrs = make([][]byte, 0, len(laddrs))
+	for _, addr := range laddrs {
+		if !viaLoopback && manet.IsIPLoopback(addr) {
+			continue
+		}
+		mes.ListenAddrs = append(mes.ListenAddrs, addr.Bytes())
 	}
 	log.Debugf("%s sent listen addrs to %s: %s", c.LocalPeer(), c.RemotePeer(), laddrs)
 
