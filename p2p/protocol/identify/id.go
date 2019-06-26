@@ -2,7 +2,6 @@ package identify
 
 import (
 	"context"
-	"fmt"
 	"sync"
 	"time"
 
@@ -148,7 +147,6 @@ func (ids *IDService) IdentifyConn(c network.Conn) {
 		err error
 	)
 
-	fmt.Println("identifying connection: ", c)
 	ids.currmu.Lock()
 	if wait, found := ids.currid[c]; found {
 		ids.currmu.Unlock()
@@ -172,7 +170,6 @@ func (ids *IDService) IdentifyConn(c network.Conn) {
 		} else {
 			ids.emitters.evtPeerIdentificationFailed.Emit(event.EvtPeerIdentificationFailed{Peer: p, Reason: err})
 		}
-		fmt.Println("done identifying connection: ", c)
 	}()
 
 	s, err = c.NewStream()
