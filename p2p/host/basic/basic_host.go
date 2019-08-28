@@ -213,7 +213,7 @@ func New(net network.Network, opts ...interface{}) *BasicHost {
 				hostopts.NATManager = NewNATManager
 			}
 		case AddrsFactory:
-			hostopts.AddrsFactory = AddrsFactory(o)
+			hostopts.AddrsFactory = o
 		case connmgr.ConnManager:
 			hostopts.ConnManager = o
 		case *madns.Resolver:
@@ -258,7 +258,7 @@ func (h *BasicHost) newStreamHandler(s network.Stream) {
 	}
 
 	lzc, protoID, handle, err := h.Mux().NegotiateLazy(s)
-	took := time.Now().Sub(before)
+	took := time.Since(before)
 	if err != nil {
 		if err == io.EOF {
 			logf := log.Debugf
