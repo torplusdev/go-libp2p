@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/libp2p/go-libp2p-core/host"
-	"github.com/libp2p/go-libp2p-core/peer"
+	"paidpiper.com/libp2p/go-libp2p-core/host"
+	"paidpiper.com/libp2p/go-libp2p-core/peer"
 
 	swarmt "github.com/libp2p/go-libp2p-swarm/testing"
 	bhost "github.com/libp2p/go-libp2p/p2p/host/basic"

@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/libp2p/go-libp2p-core/network"
-	"github.com/libp2p/go-libp2p-core/peer"
+	"paidpiper.com/libp2p/go-libp2p-core/network"
+	"paidpiper.com/libp2p/go-libp2p-core/peer"
 )
 
 // separate object so our interfaces are separate :)

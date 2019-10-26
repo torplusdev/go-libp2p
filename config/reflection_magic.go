@@ -5,7 +5,7 @@ import (
 	"reflect"
 	"runtime"
 
-	"github.com/libp2p/go-libp2p-core/host"
+	"paidpiper.com/libp2p/go-libp2p-core/host"
 	tptu "github.com/libp2p/go-libp2p-transport-upgrader"
 )
 

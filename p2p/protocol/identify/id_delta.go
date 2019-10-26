@@ -1,11 +1,11 @@
 package identify
 
 import (
-	"github.com/libp2p/go-libp2p-core/event"
-	"github.com/libp2p/go-libp2p-core/helpers"
-	"github.com/libp2p/go-libp2p-core/network"
-	"github.com/libp2p/go-libp2p-core/peer"
-	"github.com/libp2p/go-libp2p-core/protocol"
+	"paidpiper.com/libp2p/go-libp2p-core/event"
+	"paidpiper.com/libp2p/go-libp2p-core/helpers"
+	"paidpiper.com/libp2p/go-libp2p-core/network"
+	"paidpiper.com/libp2p/go-libp2p-core/peer"
+	"paidpiper.com/libp2p/go-libp2p-core/protocol"
 
 	ggio "github.com/gogo/protobuf/io"
 	pb "github.com/libp2p/go-libp2p/p2p/protocol/identify/pb"

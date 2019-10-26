@@ -8,8 +8,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/libp2p/go-libp2p-core/network"
-	protocol "github.com/libp2p/go-libp2p-core/protocol"
+	"paidpiper.com/libp2p/go-libp2p-core/network"
+	protocol "paidpiper.com/libp2p/go-libp2p-core/protocol"
 )
 
 // stream implements network.Stream

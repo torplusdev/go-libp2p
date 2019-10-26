@@ -6,9 +6,9 @@ import (
 	"math/rand"
 	"sync"
 
-	"github.com/libp2p/go-libp2p-core/network"
-	"github.com/libp2p/go-libp2p-core/peer"
-	"github.com/libp2p/go-libp2p-core/peerstore"
+	"paidpiper.com/libp2p/go-libp2p-core/network"
+	"paidpiper.com/libp2p/go-libp2p-core/peer"
+	"paidpiper.com/libp2p/go-libp2p-core/peerstore"
 
 	"github.com/jbenet/goprocess"
 	goprocessctx "github.com/jbenet/goprocess/context"

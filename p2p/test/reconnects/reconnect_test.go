@@ -12,9 +12,9 @@ import (
 
 	u "github.com/ipfs/go-ipfs-util"
 	logging "github.com/ipfs/go-log"
-	"github.com/libp2p/go-libp2p-core/host"
-	"github.com/libp2p/go-libp2p-core/network"
-	protocol "github.com/libp2p/go-libp2p-core/protocol"
+	"paidpiper.com/libp2p/go-libp2p-core/host"
+	"paidpiper.com/libp2p/go-libp2p-core/network"
+	protocol "paidpiper.com/libp2p/go-libp2p-core/protocol"
 	swarmt "github.com/libp2p/go-libp2p-swarm/testing"
 )
 

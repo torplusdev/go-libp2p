@@ -1,6 +1,6 @@
 package identify
 
-import "github.com/libp2p/go-libp2p-core/network"
+import "paidpiper.com/libp2p/go-libp2p-core/network"
 
 // IDPush is the protocol.ID of the Identify push protocol. It sends full identify messages containing
 // the current state of the peer.

@@ -9,9 +9,9 @@ import (
 
 	u "github.com/ipfs/go-ipfs-util"
 	logging "github.com/ipfs/go-log"
-	"github.com/libp2p/go-libp2p-core/host"
-	"github.com/libp2p/go-libp2p-core/network"
-	"github.com/libp2p/go-libp2p-core/peer"
+	"paidpiper.com/libp2p/go-libp2p-core/host"
+	"paidpiper.com/libp2p/go-libp2p-core/network"
+	"paidpiper.com/libp2p/go-libp2p-core/peer"
 )
 
 var log = logging.Logger("ping")

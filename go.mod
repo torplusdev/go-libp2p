@@ -1,4 +1,4 @@
-module github.com/libp2p/go-libp2p
+module paidpiper.com/libp2p/go-libp2p
 
 require (
 	github.com/gogo/protobuf v1.3.0
@@ -10,6 +10,7 @@ require (
 	github.com/jbenet/goprocess v0.1.3
 	github.com/libp2p/go-conn-security-multistream v0.1.0
 	github.com/libp2p/go-eventbus v0.1.0
+	github.com/libp2p/go-libp2p v0.4.0
 	github.com/libp2p/go-libp2p-autonat v0.1.0
 	github.com/libp2p/go-libp2p-blankhost v0.1.4
 	github.com/libp2p/go-libp2p-circuit v0.1.3
@@ -29,12 +30,17 @@ require (
 	github.com/libp2p/go-stream-muxer-multistream v0.2.0
 	github.com/libp2p/go-tcp-transport v0.1.1
 	github.com/libp2p/go-ws-transport v0.1.2
-	github.com/miekg/dns v1.1.12 // indirect
 	github.com/multiformats/go-multiaddr v0.1.1
 	github.com/multiformats/go-multiaddr-dns v0.1.0
 	github.com/multiformats/go-multiaddr-net v0.1.0
 	github.com/multiformats/go-multistream v0.1.0
 	github.com/whyrusleeping/mdns v0.0.0-20190826153040-b9b60ed33aa9
+	paidpiper.com/go-libp2p-onion-transport v0.0.0-00010101000000-000000000000
+	paidpiper.com/libp2p/go-libp2p-core v0.2.3
 )
+
+replace paidpiper.com/libp2p/go-libp2p-core => ../go-libp2p-core
+
+replace paidpiper.com/go-libp2p-onion-transport => ../go-libp2p-onion-transport
 
 go 1.12
