@@ -11,7 +11,6 @@ import (
 	secio "github.com/libp2p/go-libp2p-secio"
 	yamux "github.com/libp2p/go-libp2p-yamux"
 	tcp "github.com/libp2p/go-tcp-transport"
-	tor "paidpiper.com/go-libp2p-onion-transport"
 	ws "github.com/libp2p/go-ws-transport"
 	multiaddr "github.com/multiformats/go-multiaddr"
 )
@@ -37,7 +36,7 @@ var DefaultMuxers = ChainOptions(
 // libp2p instead of replacing them.
 var DefaultTransports = ChainOptions(
 	Transport(tcp.NewTCPTransport),
-	Transport(tor.NewOnionTransport),
+	//Transport(tor.NewOnionTransport),
 	Transport(ws.New),
 )
 
