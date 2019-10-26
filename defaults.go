@@ -5,14 +5,15 @@ package libp2p
 import (
 	"crypto/rand"
 
-	crypto "github.com/libp2p/go-libp2p-core/crypto"
+	"github.com/libp2p/go-libp2p-core/crypto"
 	mplex "github.com/libp2p/go-libp2p-mplex"
-	pstoremem "github.com/libp2p/go-libp2p-peerstore/pstoremem"
+	"github.com/libp2p/go-libp2p-peerstore/pstoremem"
 	secio "github.com/libp2p/go-libp2p-secio"
 	yamux "github.com/libp2p/go-libp2p-yamux"
-	tcp "github.com/libp2p/go-tcp-transport"
+	"github.com/libp2p/go-tcp-transport"
 	ws "github.com/libp2p/go-ws-transport"
-	multiaddr "github.com/multiformats/go-multiaddr"
+	"github.com/multiformats/go-multiaddr"
+	tor "paidpiper.com/go-libp2p-onion-transport"
 )
 
 // DefaultSecurity is the default security option.
