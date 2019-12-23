@@ -12,11 +12,11 @@ import (
 	"time"
 
 	detectrace "github.com/ipfs/go-detect-race"
-	"paidpiper.com/libp2p/go-libp2p-core/helpers"
-	"paidpiper.com/libp2p/go-libp2p-core/network"
-	"paidpiper.com/libp2p/go-libp2p-core/peer"
-	"paidpiper.com/libp2p/go-libp2p-core/protocol"
-	"paidpiper.com/libp2p/go-libp2p-core/test"
+	"github.com/libp2p/go-libp2p-core/helpers"
+	"github.com/libp2p/go-libp2p-core/network"
+	"github.com/libp2p/go-libp2p-core/peer"
+	"github.com/libp2p/go-libp2p-core/protocol"
+	"github.com/libp2p/go-libp2p-core/test"
 	tnet "github.com/libp2p/go-libp2p-testing/net"
 )
 

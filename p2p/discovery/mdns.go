@@ -8,8 +8,8 @@ import (
 	"sync"
 	"time"
 
-	"paidpiper.com/libp2p/go-libp2p-core/host"
-	"paidpiper.com/libp2p/go-libp2p-core/peer"
+	"github.com/libp2p/go-libp2p-core/host"
+	"github.com/libp2p/go-libp2p-core/peer"
 
 	logging "github.com/ipfs/go-log"
 	ma "github.com/multiformats/go-multiaddr"

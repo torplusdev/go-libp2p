@@ -7,11 +7,11 @@ import (
 	"sort"
 	"sync"
 
-	ic "paidpiper.com/libp2p/go-libp2p-core/crypto"
-	"paidpiper.com/libp2p/go-libp2p-core/host"
-	"paidpiper.com/libp2p/go-libp2p-core/network"
-	"paidpiper.com/libp2p/go-libp2p-core/peer"
-	"paidpiper.com/libp2p/go-libp2p-core/peerstore"
+	ic "github.com/libp2p/go-libp2p-core/crypto"
+	"github.com/libp2p/go-libp2p-core/host"
+	"github.com/libp2p/go-libp2p-core/network"
+	"github.com/libp2p/go-libp2p-core/peer"
+	"github.com/libp2p/go-libp2p-core/peerstore"
 
 	bhost "github.com/libp2p/go-libp2p/p2p/host/basic"
 

@@ -1,8 +1,8 @@
 package config
 
 import (
-	"paidpiper.com/libp2p/go-libp2p-core/host"
-	"paidpiper.com/libp2p/go-libp2p-core/transport"
+	"github.com/libp2p/go-libp2p-core/host"
+	"github.com/libp2p/go-libp2p-core/transport"
 
 	tptu "github.com/libp2p/go-libp2p-transport-upgrader"
 )

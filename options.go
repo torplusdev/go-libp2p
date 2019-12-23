@@ -11,7 +11,7 @@ import (
 	"github.com/libp2p/go-libp2p-core/crypto"
 	"github.com/libp2p/go-libp2p-core/metrics"
 	"github.com/libp2p/go-libp2p-core/peerstore"
-	"paidpiper.com/libp2p/go-libp2p-core/pnet"
+	"github.com/libp2p/go-libp2p-core/pnet"
 
 	circuit "github.com/libp2p/go-libp2p-circuit"
 	config "github.com/libp2p/go-libp2p/config"

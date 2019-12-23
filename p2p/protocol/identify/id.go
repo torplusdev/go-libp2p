@@ -8,14 +8,14 @@ import (
 	"time"
 
 	"github.com/libp2p/go-eventbus"
-	ic "paidpiper.com/libp2p/go-libp2p-core/crypto"
-	"paidpiper.com/libp2p/go-libp2p-core/event"
-	"paidpiper.com/libp2p/go-libp2p-core/helpers"
-	"paidpiper.com/libp2p/go-libp2p-core/host"
-	"paidpiper.com/libp2p/go-libp2p-core/network"
-	"paidpiper.com/libp2p/go-libp2p-core/peer"
-	"paidpiper.com/libp2p/go-libp2p-core/peerstore"
-	"paidpiper.com/libp2p/go-libp2p-core/protocol"
+	ic "github.com/libp2p/go-libp2p-core/crypto"
+	"github.com/libp2p/go-libp2p-core/event"
+	"github.com/libp2p/go-libp2p-core/helpers"
+	"github.com/libp2p/go-libp2p-core/host"
+	"github.com/libp2p/go-libp2p-core/network"
+	"github.com/libp2p/go-libp2p-core/peer"
+	"github.com/libp2p/go-libp2p-core/peerstore"
+	"github.com/libp2p/go-libp2p-core/protocol"
 
 	pb "github.com/libp2p/go-libp2p/p2p/protocol/identify/pb"
 
@@ -340,8 +340,8 @@ func (ids *IDService) populateMessage(mes *pb.Identify, c network.Conn) {
 	// set protocol versions
 	pv := LibP2PVersion
 	av := ids.UserAgent
-	mes.ProtocolVersion = &pv
-	mes.AgentVersion = &av
+	mes.ProtocolVersion = pv
+	mes.AgentVersion = av
 }
 
 func (ids *IDService) consumeMessage(mes *pb.Identify, c network.Conn) {
@@ -394,9 +394,11 @@ func (ids *IDService) consumeMessage(mes *pb.Identify, c network.Conn) {
 	// get protocol versions
 	pv := mes.GetProtocolVersion()
 	av := mes.GetAgentVersion()
+	sk := mes.GetStellarPublicKey()
 
 	ids.Host.Peerstore().Put(p, "ProtocolVersion", pv)
 	ids.Host.Peerstore().Put(p, "AgentVersion", av)
+	ids.Host.Peerstore().Put(p, "StellarKey", sk)
 
 	// get the key from the other side. we may not have it (no-auth transport)
 	ids.consumeReceivedPubKey(c, mes.PublicKey)

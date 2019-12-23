@@ -3,8 +3,8 @@ package config
 import (
 	"fmt"
 
-	"paidpiper.com/libp2p/go-libp2p-core/host"
-	"paidpiper.com/libp2p/go-libp2p-core/mux"
+	"github.com/libp2p/go-libp2p-core/host"
+	"github.com/libp2p/go-libp2p-core/mux"
 	msmux "github.com/libp2p/go-stream-muxer-multistream"
 )
 
