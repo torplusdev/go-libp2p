@@ -120,9 +120,6 @@ type HostOpts struct {
 
 	// UserAgent sets the user-agent for the host. Defaults to ClientVersion.
 	UserAgent string
-
-	// Stellar public key
-	StellarPublicKey	string
 }
 
 // NewHost constructs a new *BasicHost and activates it by attaching its stream and connection handlers to the given inet.Network.
@@ -161,7 +158,6 @@ func NewHost(ctx context.Context, net network.Network, opts *HostOpts) (*BasicHo
 		goprocessctx.WithProcessClosing(ctx, h.proc),
 		h,
 		identify.UserAgent(opts.UserAgent),
-		identify.StellarPublicKey(opts.StellarPublicKey),
 	)
 
 	if uint64(opts.NegotiationTimeout) != 0 {

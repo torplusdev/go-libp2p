@@ -76,8 +76,6 @@ type Config struct {
 	Routing RoutingC
 
 	EnableAutoRelay bool
-
-	StellarPublicKey	string
 }
 
 // NewNode constructs a new libp2p Host from the Config.
@@ -127,7 +125,6 @@ func (cfg *Config) NewNode(ctx context.Context) (host.Host, error) {
 		NATManager:   cfg.NATManager,
 		EnablePing:   !cfg.DisablePing,
 		UserAgent:    cfg.UserAgent,
-		StellarPublicKey: cfg.StellarPublicKey,
 	})
 
 	if err != nil {

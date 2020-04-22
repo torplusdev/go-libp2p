@@ -2,8 +2,6 @@ package identify
 
 type config struct {
 	userAgent string
-
-	stellarPublicKey string
 }
 
 // Option is an option function for identify.
@@ -13,11 +11,5 @@ type Option func(*config)
 func UserAgent(ua string) Option {
 	return func(cfg *config) {
 		cfg.userAgent = ua
-	}
-}
-
-func StellarPublicKey(ua string) Option {
-	return func(cfg *config) {
-		cfg.stellarPublicKey = ua
 	}
 }

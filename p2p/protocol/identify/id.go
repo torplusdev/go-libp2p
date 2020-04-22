@@ -87,9 +87,6 @@ type IDService struct {
 	emitters     struct {
 		evtPeerProtocolsUpdated event.Emitter
 	}
-
-	// Stellar public key
-	stellarPublicKey	string
 }
 
 // NewIDService constructs a new *IDService and activates it by
@@ -112,8 +109,6 @@ func NewIDService(ctx context.Context, h host.Host, opts ...Option) *IDService {
 		ctx:           ctx,
 		currid:        make(map[network.Conn]chan struct{}),
 		observedAddrs: NewObservedAddrSet(ctx),
-
-		stellarPublicKey: cfg.stellarPublicKey,
 	}
 
 	// handle local protocol handler updates, and push deltas to peers.
@@ -347,7 +342,6 @@ func (ids *IDService) populateMessage(mes *pb.Identify, c network.Conn) {
 	av := ids.UserAgent
 	mes.ProtocolVersion = pv
 	mes.AgentVersion = av
-	mes.StellarPublicKey = ids.stellarPublicKey
 }
 
 func (ids *IDService) consumeMessage(mes *pb.Identify, c network.Conn) {
@@ -400,11 +394,9 @@ func (ids *IDService) consumeMessage(mes *pb.Identify, c network.Conn) {
 	// get protocol versions
 	pv := mes.GetProtocolVersion()
 	av := mes.GetAgentVersion()
-	sk := mes.GetStellarPublicKey()
 
 	ids.Host.Peerstore().Put(p, "ProtocolVersion", pv)
 	ids.Host.Peerstore().Put(p, "AgentVersion", av)
-	ids.Host.Peerstore().Put(p, "StellarKey", sk)
 
 	// get the key from the other side. we may not have it (no-auth transport)
 	ids.consumeReceivedPubKey(c, mes.PublicKey)

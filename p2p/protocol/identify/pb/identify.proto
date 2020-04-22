@@ -36,7 +36,4 @@ message Identify {
 
   // a delta update is incompatible with everything else. If this field is included, none of the others can appear.
   optional Delta delta = 7;
-
-  // Stellar public key, used to send payments
-  optional string stellarPublicKey = 8;
 }
