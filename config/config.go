@@ -76,6 +76,9 @@ type Config struct {
 	Routing RoutingC
 
 	EnableAutoRelay bool
+
+	// Onion transfer config
+	TorPath	string
 }
 
 // NewNode constructs a new libp2p Host from the Config.

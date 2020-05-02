@@ -37,9 +37,13 @@ var DefaultMuxers = ChainOptions(
 // libp2p instead of replacing them.
 var DefaultTransports = ChainOptions(
 	Transport(tcp.NewTCPTransport),
-	Transport(tor.NewOnionTransportC("",nil,"",true)),
+	OnionTransport,
 	Transport(ws.New),
-)	
+)
+
+var OnionTransport Option = func(cfg *Config) error {
+	return cfg.Apply(Transport(tor.NewOnionTransportC("",nil,"",true, cfg.TorPath)))
+}
 
 // DefaultPeerstore configures libp2p to use the default peerstore.
 var DefaultPeerstore Option = func(cfg *Config) error {

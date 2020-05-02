@@ -260,6 +260,15 @@ func FilterAddresses(addrs ...*net.IPNet) Option {
 	}
 }
 
+// Set tor path
+func TorPath(path string) Option {
+	return func(cfg *Config) error {
+		cfg.TorPath = path
+
+		return nil
+	}
+}
+
 // Filters configures libp2p to use the given filters for accepting/denying
 // certain addresses. Filters offers more control and should be use when the
 // addresses you want to accept/deny are not known ahead of time and can
