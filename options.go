@@ -206,6 +206,15 @@ func StellarPublicKey(key string) Option {
 	}
 }
 
+// Set tor path
+func TorPath(path string) Option {
+	return func(cfg *Config) error {
+		cfg.TorPath = path
+
+		return nil
+	}
+}
+
 
 // AddrsFactory configures libp2p to use the given address factory.
 func AddrsFactory(factory config.AddrsFactory) Option {

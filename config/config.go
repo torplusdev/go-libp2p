@@ -91,6 +91,9 @@ type Config struct {
 
 	EnableAutoRelay bool
 
+	// Onion transfer config
+	TorPath	string
+
 	StellarPublicKey	string
 
 	AutoNATConfig
