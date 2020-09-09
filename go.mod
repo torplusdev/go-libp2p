@@ -5,7 +5,7 @@ go 1.12
 require (
 	github.com/davidlazar/go-crypto v0.0.0-20190912175916-7055855a373f // indirect
 	github.com/gogo/protobuf v1.3.1
-	github.com/ipfs/go-cid v0.0.6
+	github.com/ipfs/go-cid v0.0.7
 	github.com/ipfs/go-detect-race v0.0.1
 	github.com/ipfs/go-ipfs-util v0.0.2
 	github.com/ipfs/go-log v1.0.4
@@ -43,4 +43,13 @@ require (
 	github.com/whyrusleeping/mdns v0.0.0-20190826153040-b9b60ed33aa9
 	golang.org/x/net v0.0.0-20200519113804-d87ec0cfa476 // indirect
 	golang.org/x/sys v0.0.0-20200519105757-fe76b779f299 // indirect
+	paidpiper.com/go-libp2p-onion-transport v0.0.0-00010101000000-000000000000
 )
+
+replace github.com/libp2p/go-libp2p-core => ../go-libp2p-core
+
+replace github.com/multiformats/go-multiaddr => ../go-multiaddr
+
+replace github.com/multiformats/go-multiaddr-net => ../go-multiaddr-net
+
+replace paidpiper.com/go-libp2p-onion-transport => ../go-libp2p-onion-transport
