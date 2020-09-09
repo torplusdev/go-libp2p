@@ -16,13 +16,6 @@ func UserAgent(ua string) Option {
 	}
 }
 
-// StellarPublicKey sets the stellar public key of the node for receiving payment transactions.
-func StellarPublicKey(ua string) Option {
-	return func(cfg *config) {
-		cfg.stellarPublicKey = ua
-	}
-}
-
 // DisableSignedPeerRecord disables populating signed peer records on the outgoing Identify response
 // and ONLY sends the unsigned addresses.
 func DisableSignedPeerRecord() Option {
