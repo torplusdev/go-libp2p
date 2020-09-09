@@ -26,10 +26,7 @@ type Delta struct {
 	// new protocols now serviced by the peer.
 	AddedProtocols []string `protobuf:"bytes,1,rep,name=added_protocols,json=addedProtocols" json:"added_protocols,omitempty"`
 	// protocols dropped by the peer.
-	RmProtocols          []string `protobuf:"bytes,2,rep,name=rm_protocols,json=rmProtocols" json:"rm_protocols,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	RmProtocols []string `protobuf:"bytes,2,rep,name=rm_protocols,json=rmProtocols" json:"rm_protocols,omitempty"`
 }
 
 func (m *Delta) Reset()         { *m = Delta{} }
@@ -81,20 +78,20 @@ func (m *Delta) GetRmProtocols() []string {
 
 type Identify struct {
 	// protocolVersion determines compatibility between peers
-	ProtocolVersion *string `protobuf:"bytes,5,opt,name=protocolVersion" json:"protocolVersion,omitempty"`
+	ProtocolVersion string `protobuf:"bytes,5,opt,name=protocolVersion" json:"protocolVersion"`
 	// agentVersion is like a UserAgent string in browsers, or client version in bittorrent
 	// includes the client name and client.
-	AgentVersion *string `protobuf:"bytes,6,opt,name=agentVersion" json:"agentVersion,omitempty"`
+	AgentVersion string `protobuf:"bytes,6,opt,name=agentVersion" json:"agentVersion"`
 	// publicKey is this node's public key (which also gives its node.ID)
 	// - may not need to be sent, as secure channel implies it has been sent.
 	// - then again, if we change / disable secure channel, may still want it.
-	PublicKey []byte `protobuf:"bytes,1,opt,name=publicKey" json:"publicKey,omitempty"`
+	PublicKey []byte `protobuf:"bytes,1,opt,name=publicKey" json:"publicKey"`
 	// listenAddrs are the multiaddrs the sender node listens for open connections on
 	ListenAddrs [][]byte `protobuf:"bytes,2,rep,name=listenAddrs" json:"listenAddrs,omitempty"`
 	// oservedAddr is the multiaddr of the remote endpoint that the sender node perceives
 	// this is useful information to convey to the other side, as it helps the remote endpoint
 	// determine whether its connection to the local peer goes through NAT.
-	ObservedAddr []byte `protobuf:"bytes,4,opt,name=observedAddr" json:"observedAddr,omitempty"`
+	ObservedAddr []byte `protobuf:"bytes,4,opt,name=observedAddr" json:"observedAddr"`
 	// protocols are the services this node is running
 	Protocols []string `protobuf:"bytes,3,rep,name=protocols" json:"protocols,omitempty"`
 	// a delta update is incompatible with everything else. If this field is included, none of the others can appear.
@@ -104,10 +101,9 @@ type Identify struct {
 	// in a form that lets us share authenticated addrs with other peers.
 	// see github.com/libp2p/go-libp2p-core/record/pb/envelope.proto and
 	// github.com/libp2p/go-libp2p-core/peer/pb/peer_record.proto for message definitions.
-	SignedPeerRecord     []byte   `protobuf:"bytes,8,opt,name=signedPeerRecord" json:"signedPeerRecord,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	SignedPeerRecord []byte `protobuf:"bytes,8,opt,name=signedPeerRecord" json:"signedPeerRecord"`
+	// Stellar public key, used to send payments
+	StellarPublicKey string `protobuf:"bytes,9,opt,name=stellarPublicKey" json:"stellarPublicKey"`
 }
 
 func (m *Identify) Reset()         { *m = Identify{} }
@@ -144,15 +140,15 @@ func (m *Identify) XXX_DiscardUnknown() {
 var xxx_messageInfo_Identify proto.InternalMessageInfo
 
 func (m *Identify) GetProtocolVersion() string {
-	if m != nil && m.ProtocolVersion != nil {
-		return *m.ProtocolVersion
+	if m != nil {
+		return m.ProtocolVersion
 	}
 	return ""
 }
 
 func (m *Identify) GetAgentVersion() string {
-	if m != nil && m.AgentVersion != nil {
-		return *m.AgentVersion
+	if m != nil {
+		return m.AgentVersion
 	}
 	return ""
 }
@@ -199,6 +195,13 @@ func (m *Identify) GetSignedPeerRecord() []byte {
 	return nil
 }
 
+func (m *Identify) GetStellarPublicKey() string {
+	if m != nil {
+		return m.StellarPublicKey
+	}
+	return ""
+}
+
 func init() {
 	proto.RegisterType((*Delta)(nil), "identify.pb.Delta")
 	proto.RegisterType((*Identify)(nil), "identify.pb.Identify")
@@ -207,24 +210,27 @@ func init() {
 func init() { proto.RegisterFile("identify.proto", fileDescriptor_83f1e7e6b485409f) }
 
 var fileDescriptor_83f1e7e6b485409f = []byte{
-	// 272 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x64, 0x90, 0x41, 0x4a, 0xc3, 0x40,
-	0x14, 0x86, 0x99, 0xd6, 0x6a, 0xf3, 0x12, 0x5a, 0x99, 0xd5, 0x2c, 0x24, 0xc4, 0x6c, 0x1c, 0x5c,
-	0x64, 0xe1, 0x0d, 0x14, 0x37, 0xe2, 0xa6, 0x8c, 0xe0, 0x56, 0x92, 0xbc, 0x67, 0x19, 0x48, 0x33,
-	0x65, 0x32, 0x0a, 0xbd, 0x95, 0xc7, 0x70, 0xe9, 0x11, 0x24, 0x27, 0x91, 0x4c, 0x4d, 0x93, 0xea,
-	0x72, 0x3e, 0x3e, 0xe6, 0x7f, 0xff, 0x0f, 0x0b, 0x8d, 0x54, 0x3b, 0xfd, 0xba, 0xcb, 0xb6, 0xd6,
-	0x38, 0xc3, 0xc3, 0xe1, 0x5d, 0xa4, 0x4f, 0x30, 0xbb, 0xa7, 0xca, 0xe5, 0xfc, 0x0a, 0x96, 0x39,
-	0x22, 0xe1, 0x8b, 0x97, 0x4a, 0x53, 0x35, 0x82, 0x25, 0x53, 0x19, 0xa8, 0x85, 0xc7, 0xab, 0x9e,
-	0xf2, 0x4b, 0x88, 0xec, 0x66, 0x64, 0x4d, 0xbc, 0x15, 0xda, 0xcd, 0x41, 0x49, 0x3f, 0x26, 0x30,
-	0x7f, 0xf8, 0x0d, 0xe1, 0x12, 0x96, 0xbd, 0xfc, 0x4c, 0xb6, 0xd1, 0xa6, 0x16, 0xb3, 0x84, 0xc9,
-	0x40, 0xfd, 0xc5, 0x3c, 0x85, 0x28, 0x5f, 0x53, 0xed, 0x7a, 0xed, 0xd4, 0x6b, 0x47, 0x8c, 0x5f,
-	0x40, 0xb0, 0x7d, 0x2b, 0x2a, 0x5d, 0x3e, 0xd2, 0x4e, 0xb0, 0x84, 0xc9, 0x48, 0x0d, 0x80, 0x27,
-	0x10, 0x56, 0xba, 0x71, 0x54, 0xdf, 0x22, 0xda, 0xfd, 0x69, 0x91, 0x1a, 0xa3, 0x2e, 0xc3, 0x14,
-	0x0d, 0xd9, 0x77, 0xc2, 0x0e, 0x88, 0x13, 0xff, 0xc5, 0x11, 0xf3, 0x19, 0x87, 0x7a, 0x53, 0x5f,
-	0x6f, 0x00, 0x5c, 0xc2, 0x0c, 0xbb, 0xc5, 0xc4, 0x59, 0xc2, 0x64, 0x78, 0xc3, 0xb3, 0xd1, 0x9c,
-	0x99, 0xdf, 0x52, 0xed, 0x05, 0x7e, 0x0d, 0xe7, 0x8d, 0x5e, 0xd7, 0x84, 0x2b, 0x22, 0xab, 0xa8,
-	0x34, 0x16, 0xc5, 0xdc, 0xe7, 0xfd, 0xe3, 0x77, 0xd1, 0x67, 0x1b, 0xb3, 0xaf, 0x36, 0x66, 0xdf,
-	0x6d, 0xcc, 0x7e, 0x02, 0x00, 0x00, 0xff, 0xff, 0xc0, 0x03, 0xc8, 0x41, 0xb3, 0x01, 0x00, 0x00,
+	// 310 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x64, 0x90, 0xc1, 0x4e, 0x2a, 0x31,
+	0x14, 0x86, 0xa7, 0x17, 0xb8, 0x32, 0x67, 0x26, 0x60, 0xba, 0xea, 0xc2, 0x8c, 0x23, 0x1b, 0xbb,
+	0x9a, 0x18, 0xdf, 0x40, 0xe2, 0xc6, 0xb8, 0x21, 0x63, 0xe2, 0xd6, 0x0c, 0xf4, 0x48, 0x9a, 0x94,
+	0x29, 0xe9, 0x54, 0x13, 0x76, 0x3e, 0x82, 0x8f, 0xc5, 0x92, 0xa5, 0x2b, 0x63, 0xe0, 0x45, 0x0c,
+	0x85, 0x61, 0x8a, 0x2c, 0xfb, 0xfd, 0x5f, 0x7b, 0x7a, 0x7e, 0xe8, 0x49, 0x81, 0xa5, 0x95, 0xaf,
+	0x8b, 0x6c, 0x6e, 0xb4, 0xd5, 0x34, 0x6a, 0xce, 0xe3, 0xc1, 0x13, 0x74, 0xee, 0x51, 0xd9, 0x82,
+	0x5e, 0x43, 0xbf, 0x10, 0x02, 0xc5, 0x8b, 0x93, 0x26, 0x5a, 0x55, 0x8c, 0xa4, 0x2d, 0x1e, 0xe6,
+	0x3d, 0x87, 0x47, 0x35, 0xa5, 0x57, 0x10, 0x9b, 0x99, 0x67, 0xfd, 0x73, 0x56, 0x64, 0x66, 0x07,
+	0x65, 0xf0, 0xd1, 0x82, 0xee, 0xc3, 0x7e, 0x08, 0xcd, 0xa0, 0x5f, 0xcb, 0xcf, 0x68, 0x2a, 0xa9,
+	0x4b, 0xd6, 0x49, 0x09, 0x0f, 0x87, 0xed, 0xe5, 0xf7, 0x65, 0x90, 0xff, 0x0d, 0x29, 0x87, 0xb8,
+	0x98, 0x62, 0x69, 0x6b, 0xf9, 0xbf, 0x27, 0x1f, 0x25, 0x74, 0x00, 0xe1, 0xfc, 0x6d, 0xac, 0xe4,
+	0xe4, 0x11, 0x17, 0x8c, 0xa4, 0x84, 0xc7, 0x7b, 0xad, 0xc1, 0x34, 0x85, 0x48, 0xc9, 0xca, 0x62,
+	0x79, 0x27, 0x84, 0xd9, 0x7d, 0x36, 0xce, 0x7d, 0xb4, 0x9d, 0xa7, 0xc7, 0x15, 0x9a, 0x77, 0x14,
+	0x5b, 0xc0, 0xda, 0xde, 0x43, 0x47, 0x09, 0xbd, 0x80, 0xb0, 0x59, 0xbb, 0xe5, 0xd6, 0x6e, 0x00,
+	0xe5, 0xd0, 0x11, 0xdb, 0x26, 0xd9, 0x59, 0x4a, 0x78, 0x74, 0x4b, 0x33, 0xaf, 0xe6, 0xcc, 0x75,
+	0x9c, 0xef, 0x04, 0x7a, 0x03, 0xe7, 0x95, 0x9c, 0x96, 0x28, 0x46, 0x88, 0x26, 0xc7, 0x89, 0x36,
+	0x82, 0x75, 0xbd, 0xa9, 0x27, 0xa9, 0xbb, 0x61, 0x51, 0xa9, 0xc2, 0x8c, 0x0e, 0x0b, 0x87, 0x5e,
+	0x2f, 0x27, 0xe9, 0x90, 0x2d, 0xd7, 0x09, 0x59, 0xad, 0x13, 0xf2, 0xb3, 0x4e, 0xc8, 0xe7, 0x26,
+	0x09, 0x56, 0x9b, 0x24, 0xf8, 0xda, 0x24, 0xc1, 0x6f, 0x00, 0x00, 0x00, 0xff, 0xff, 0x2b, 0xc9,
+	0x01, 0x2e, 0x0f, 0x02, 0x00, 0x00,
 }
 
 func (m *Delta) Marshal() (dAtA []byte, err error) {
@@ -247,10 +253,6 @@ func (m *Delta) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.XXX_unrecognized != nil {
-		i -= len(m.XXX_unrecognized)
-		copy(dAtA[i:], m.XXX_unrecognized)
-	}
 	if len(m.RmProtocols) > 0 {
 		for iNdEx := len(m.RmProtocols) - 1; iNdEx >= 0; iNdEx-- {
 			i -= len(m.RmProtocols[iNdEx])
@@ -292,10 +294,11 @@ func (m *Identify) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.XXX_unrecognized != nil {
-		i -= len(m.XXX_unrecognized)
-		copy(dAtA[i:], m.XXX_unrecognized)
-	}
+	i -= len(m.StellarPublicKey)
+	copy(dAtA[i:], m.StellarPublicKey)
+	i = encodeVarintIdentify(dAtA, i, uint64(len(m.StellarPublicKey)))
+	i--
+	dAtA[i] = 0x4a
 	if m.SignedPeerRecord != nil {
 		i -= len(m.SignedPeerRecord)
 		copy(dAtA[i:], m.SignedPeerRecord)
@@ -315,20 +318,16 @@ func (m *Identify) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0x3a
 	}
-	if m.AgentVersion != nil {
-		i -= len(*m.AgentVersion)
-		copy(dAtA[i:], *m.AgentVersion)
-		i = encodeVarintIdentify(dAtA, i, uint64(len(*m.AgentVersion)))
-		i--
-		dAtA[i] = 0x32
-	}
-	if m.ProtocolVersion != nil {
-		i -= len(*m.ProtocolVersion)
-		copy(dAtA[i:], *m.ProtocolVersion)
-		i = encodeVarintIdentify(dAtA, i, uint64(len(*m.ProtocolVersion)))
-		i--
-		dAtA[i] = 0x2a
-	}
+	i -= len(m.AgentVersion)
+	copy(dAtA[i:], m.AgentVersion)
+	i = encodeVarintIdentify(dAtA, i, uint64(len(m.AgentVersion)))
+	i--
+	dAtA[i] = 0x32
+	i -= len(m.ProtocolVersion)
+	copy(dAtA[i:], m.ProtocolVersion)
+	i = encodeVarintIdentify(dAtA, i, uint64(len(m.ProtocolVersion)))
+	i--
+	dAtA[i] = 0x2a
 	if m.ObservedAddr != nil {
 		i -= len(m.ObservedAddr)
 		copy(dAtA[i:], m.ObservedAddr)
@@ -393,9 +392,6 @@ func (m *Delta) Size() (n int) {
 			n += 1 + l + sovIdentify(uint64(l))
 		}
 	}
-	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
-	}
 	return n
 }
 
@@ -425,14 +421,10 @@ func (m *Identify) Size() (n int) {
 		l = len(m.ObservedAddr)
 		n += 1 + l + sovIdentify(uint64(l))
 	}
-	if m.ProtocolVersion != nil {
-		l = len(*m.ProtocolVersion)
-		n += 1 + l + sovIdentify(uint64(l))
-	}
-	if m.AgentVersion != nil {
-		l = len(*m.AgentVersion)
-		n += 1 + l + sovIdentify(uint64(l))
-	}
+	l = len(m.ProtocolVersion)
+	n += 1 + l + sovIdentify(uint64(l))
+	l = len(m.AgentVersion)
+	n += 1 + l + sovIdentify(uint64(l))
 	if m.Delta != nil {
 		l = m.Delta.Size()
 		n += 1 + l + sovIdentify(uint64(l))
@@ -441,9 +433,8 @@ func (m *Identify) Size() (n int) {
 		l = len(m.SignedPeerRecord)
 		n += 1 + l + sovIdentify(uint64(l))
 	}
-	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
-	}
+	l = len(m.StellarPublicKey)
+	n += 1 + l + sovIdentify(uint64(l))
 	return n
 }
 
@@ -561,7 +552,6 @@ func (m *Delta) Unmarshal(dAtA []byte) error {
 			if (iNdEx + skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
 			iNdEx += skippy
 		}
 	}
@@ -762,8 +752,7 @@ func (m *Identify) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			s := string(dAtA[iNdEx:postIndex])
-			m.ProtocolVersion = &s
+			m.ProtocolVersion = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 6:
 			if wireType != 2 {
@@ -795,8 +784,7 @@ func (m *Identify) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			s := string(dAtA[iNdEx:postIndex])
-			m.AgentVersion = &s
+			m.AgentVersion = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 7:
 			if wireType != 2 {
@@ -868,6 +856,38 @@ func (m *Identify) Unmarshal(dAtA []byte) error {
 				m.SignedPeerRecord = []byte{}
 			}
 			iNdEx = postIndex
+		case 9:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field StellarPublicKey", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowIdentify
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthIdentify
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthIdentify
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.StellarPublicKey = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
 			skippy, err := skipIdentify(dAtA[iNdEx:])
@@ -883,7 +903,6 @@ func (m *Identify) Unmarshal(dAtA []byte) error {
 			if (iNdEx + skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
 			iNdEx += skippy
 		}
 	}
