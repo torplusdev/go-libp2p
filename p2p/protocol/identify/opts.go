@@ -3,6 +3,7 @@ package identify
 type config struct {
 	userAgent               string
 	disableSignedPeerRecord bool
+	stellarPublicKey string
 }
 
 // Option is an option function for identify.
@@ -12,6 +13,13 @@ type Option func(*config)
 func UserAgent(ua string) Option {
 	return func(cfg *config) {
 		cfg.userAgent = ua
+	}
+}
+
+// StellarPublicKey sets the stellar public key of the node for receiving payment transactions.
+func StellarPublicKey(ua string) Option {
+	return func(cfg *config) {
+		cfg.stellarPublicKey = ua
 	}
 }
 

@@ -195,6 +195,18 @@ func ConnectionManager(connman connmgr.ConnManager) Option {
 	}
 }
 
+// StellarPublicKey configures libp2p to use the given key
+func StellarPublicKey(key string) Option {
+	return func(cfg *Config) error {
+		if cfg.StellarPublicKey != "" {
+			return fmt.Errorf("cannot specify multiple stellar keys")
+		}
+		cfg.StellarPublicKey = key
+		return nil
+	}
+}
+
+
 // AddrsFactory configures libp2p to use the given address factory.
 func AddrsFactory(factory config.AddrsFactory) Option {
 	return func(cfg *Config) error {

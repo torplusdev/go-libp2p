@@ -90,6 +90,9 @@ type Config struct {
 	Routing RoutingC
 
 	EnableAutoRelay bool
+
+	StellarPublicKey	string
+
 	AutoNATConfig
 	StaticRelays []peer.AddrInfo
 }
@@ -191,6 +194,7 @@ func (cfg *Config) NewNode(ctx context.Context) (host.Host, error) {
 		NATManager:   cfg.NATManager,
 		EnablePing:   !cfg.DisablePing,
 		UserAgent:    cfg.UserAgent,
+		StellarPublicKey: cfg.StellarPublicKey,
 	})
 
 	if err != nil {
