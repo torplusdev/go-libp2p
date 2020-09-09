@@ -151,6 +151,9 @@ type HostOpts struct {
 
 	// DisableSignedPeerRecord disables the generation of Signed Peer Records on this host.
 	DisableSignedPeerRecord bool
+
+	// Stellar public key
+	StellarPublicKey	string
 }
 
 // NewHost constructs a new *BasicHost and activates it by attaching its stream and connection handlers to the given inet.Network.
@@ -209,9 +212,9 @@ func NewHost(ctx context.Context, n network.Network, opts *HostOpts) (*BasicHost
 
 	// we can't set this as a default above because it depends on the *BasicHost.
 	if h.disableSignedPeerRecord {
-		h.ids = identify.NewIDService(h, identify.UserAgent(opts.UserAgent), identify.DisableSignedPeerRecord())
+		h.ids = identify.NewIDService(h, identify.UserAgent(opts.UserAgent), identify.StellarPublicKey(opts.StellarPublicKey), identify.DisableSignedPeerRecord())
 	} else {
-		h.ids = identify.NewIDService(h, identify.UserAgent(opts.UserAgent))
+		h.ids = identify.NewIDService(h, identify.UserAgent(opts.UserAgent),identify.StellarPublicKey(opts.StellarPublicKey))
 	}
 
 	if uint64(opts.NegotiationTimeout) != 0 {

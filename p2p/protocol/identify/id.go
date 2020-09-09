@@ -112,6 +112,10 @@ type IDService struct {
 
 	addPeerHandlerCh chan addPeerHandlerReq
 	rmPeerHandlerCh  chan rmPeerHandlerReq
+
+
+	// Stellar public key
+	stellarPublicKey	string
 }
 
 // NewIDService constructs a new *IDService and activates it by
@@ -141,6 +145,7 @@ func NewIDService(h host.Host, opts ...Option) *IDService {
 
 		addPeerHandlerCh: make(chan addPeerHandlerReq),
 		rmPeerHandlerCh:  make(chan rmPeerHandlerReq),
+		stellarPublicKey: cfg.stellarPublicKey,
 	}
 
 	// handle local protocol handler updates, and push deltas to peers.
@@ -529,6 +534,7 @@ func (ids *IDService) createBaseIdentifyResponse(
 	av := ids.UserAgent
 	mes.ProtocolVersion = pv
 	mes.AgentVersion = av
+	mes.StellarPublicKey = ids.stellarPublicKey
 
 	return mes
 }
