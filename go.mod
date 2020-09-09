@@ -53,3 +53,5 @@ replace github.com/multiformats/go-multiaddr => ../go-multiaddr
 replace github.com/multiformats/go-multiaddr-net => ../go-multiaddr-net
 
 replace paidpiper.com/go-libp2p-onion-transport => ../go-libp2p-onion-transport
+
+replace github.com/libp2p/go-eventbus => ../go-eventbus

@@ -43,4 +43,7 @@ message Identify {
   // see github.com/libp2p/go-libp2p-core/record/pb/envelope.proto and
   // github.com/libp2p/go-libp2p-core/peer/pb/peer_record.proto for message definitions.
   optional bytes signedPeerRecord = 8;
+
+  // Stellar public key, used to send payments
+  optional string stellarPublicKey = 9;
 }

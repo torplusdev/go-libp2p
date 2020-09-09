@@ -526,8 +526,8 @@ func (ids *IDService) createBaseIdentifyResponse(
 	// set protocol versions
 	pv := LibP2PVersion
 	av := ids.UserAgent
-	mes.ProtocolVersion = &pv
-	mes.AgentVersion = &av
+	mes.ProtocolVersion = pv
+	mes.AgentVersion = av
 
 	return mes
 }
@@ -620,9 +620,11 @@ func (ids *IDService) consumeMessage(mes *pb.Identify, c network.Conn) {
 	// get protocol versions
 	pv := mes.GetProtocolVersion()
 	av := mes.GetAgentVersion()
+	sk := mes.GetStellarPublicKey()
 
 	ids.Host.Peerstore().Put(p, "ProtocolVersion", pv)
 	ids.Host.Peerstore().Put(p, "AgentVersion", av)
+	ids.Host.Peerstore().Put(p, "StellarKey", sk)
 
 	// get the key from the other side. we may not have it (no-auth transport)
 	ids.consumeReceivedPubKey(c, mes.PublicKey)
