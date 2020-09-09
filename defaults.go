@@ -10,6 +10,7 @@ import (
 	noise "github.com/libp2p/go-libp2p-noise"
 	pstoremem "github.com/libp2p/go-libp2p-peerstore/pstoremem"
 	tls "github.com/libp2p/go-libp2p-tls"
+	tor "paidpiper.com/go-libp2p-onion-transport"
 	yamux "github.com/libp2p/go-libp2p-yamux"
 	tcp "github.com/libp2p/go-tcp-transport"
 	ws "github.com/libp2p/go-ws-transport"
@@ -40,6 +41,7 @@ var DefaultMuxers = ChainOptions(
 // libp2p instead of replacing them.
 var DefaultTransports = ChainOptions(
 	Transport(tcp.NewTCPTransport),
+	Transport(tor.NewOnionTransportC("",nil,"",true)),
 	Transport(ws.New),
 )
 
