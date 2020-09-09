@@ -43,4 +43,15 @@ require (
 	github.com/stretchr/testify v1.6.1
 	github.com/whyrusleeping/mdns v0.0.0-20190826153040-b9b60ed33aa9
 	google.golang.org/protobuf v1.23.0 // indirect
+	golang.org/x/net v0.0.0-20200519113804-d87ec0cfa476 // indirect
+	golang.org/x/sys v0.0.0-20200519105757-fe76b779f299 // indirect
+	paidpiper.com/go-libp2p-onion-transport v0.0.0-00010101000000-000000000000
 )
+
+replace github.com/libp2p/go-libp2p-core => ../go-libp2p-core
+
+replace github.com/multiformats/go-multiaddr => ../go-multiaddr
+
+replace github.com/multiformats/go-multiaddr-net => ../go-multiaddr-net
+
+replace paidpiper.com/go-libp2p-onion-transport => ../go-libp2p-onion-transport
