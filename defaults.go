@@ -46,7 +46,7 @@ var DefaultTransports = ChainOptions(
 )
 
 var OnionTransport Option = func(cfg *Config) error {
-	return cfg.Apply(Transport(tor.NewOnionTransportC("", nil, cfg.TorPath, true)))
+	return cfg.Apply(Transport(tor.NewOnionTransportC(cfg.TorPath,cfg.TorConfigPath,"", nil, cfg.TorPath, true)))
 }
 
 // DefaultPeerstore configures libp2p to use the default peerstore.

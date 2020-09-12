@@ -93,6 +93,7 @@ type Config struct {
 
 	// Onion transfer config
 	TorPath	string
+	TorConfigPath	string
 
 	AutoNATConfig
 	StaticRelays []peer.AddrInfo
