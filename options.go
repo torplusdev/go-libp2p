@@ -204,6 +204,13 @@ func TorPath(path string) Option {
 	}
 }
 
+func TorConfigPath(path string ) Option {
+	return func(cfg *Config) error {
+		cfg.TorConfigPath = path
+
+		return nil
+	}
+}
 
 // AddrsFactory configures libp2p to use the given address factory.
 func AddrsFactory(factory config.AddrsFactory) Option {
