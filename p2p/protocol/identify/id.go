@@ -485,7 +485,7 @@ func (ids *IDService) createBaseIdentifyResponse(
 
 	remoteAddr := conn.RemoteMultiaddr()
 	localAddr := conn.LocalMultiaddr()
-
+	_ = localAddr
 	// set protocols this node is currently handling
 	mes.Protocols = snapshot.protocols
 
@@ -496,7 +496,10 @@ func (ids *IDService) createBaseIdentifyResponse(
 	// populate unsigned addresses.
 	// peers that do not yet support signed addresses will need this.
 	// Note: LocalMultiaddr is sometimes 0.0.0.0
-	viaLoopback := manet.IsIPLoopback(localAddr) || manet.IsIPLoopback(remoteAddr)
+
+	//viaLoopback := manet.IsIPLoopback(localAddr) || manet.IsIPLoopback(remoteAddr)
+	viaLoopback :=  manet.IsIPLoopback(remoteAddr)
+
 	mes.ListenAddrs = make([][]byte, 0, len(snapshot.addrs))
 	for _, addr := range snapshot.addrs {
 		if !viaLoopback && manet.IsIPLoopback(addr) {

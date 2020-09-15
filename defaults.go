@@ -41,7 +41,7 @@ var DefaultMuxers = ChainOptions(
 // libp2p instead of replacing them.
 var DefaultTransports = ChainOptions(
 	Transport(tcp.NewTCPTransport),
-	OnionTransport,
+//	OnionTransport,
 	Transport(ws.New),
 )
 
