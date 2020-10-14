@@ -17,7 +17,7 @@ require (
 	github.com/libp2p/go-libp2p-autonat v0.2.3
 	github.com/libp2p/go-libp2p-blankhost v0.1.6
 	github.com/libp2p/go-libp2p-circuit v0.2.3
-	github.com/libp2p/go-libp2p-core v0.5.7
+	github.com/libp2p/go-libp2p-core v0.6.0
 	github.com/libp2p/go-libp2p-discovery v0.4.0
 	github.com/libp2p/go-libp2p-loggables v0.1.0
 	github.com/libp2p/go-libp2p-mplex v0.2.3
@@ -55,3 +55,5 @@ replace github.com/multiformats/go-multiaddr-net => ../go-multiaddr-net
 replace paidpiper.com/go-libp2p-onion-transport => ../go-libp2p-onion-transport
 
 replace github.com/libp2p/go-eventbus => ../go-eventbus
+
+replace github.com/libp2p/go-libp2p-swarm => ../go-libp2p-swarm
