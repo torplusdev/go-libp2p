@@ -42,9 +42,9 @@ require (
 	github.com/onsi/ginkgo v1.12.1 // indirect
 	github.com/stretchr/testify v1.6.1
 	github.com/whyrusleeping/mdns v0.0.0-20190826153040-b9b60ed33aa9
-	google.golang.org/protobuf v1.23.0 // indirect
 	golang.org/x/net v0.0.0-20200519113804-d87ec0cfa476 // indirect
 	golang.org/x/sys v0.0.0-20200519105757-fe76b779f299 // indirect
+	google.golang.org/protobuf v1.23.0 // indirect
 	paidpiper.com/go-libp2p-onion-transport v0.0.0-00010101000000-000000000000
 )
 
