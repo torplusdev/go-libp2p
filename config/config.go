@@ -94,6 +94,7 @@ type Config struct {
 	// Onion transfer config
 	TorPath	string
 	TorConfigPath	string
+	SupportNonAnonymous bool
 
 	AutoNATConfig
 	StaticRelays []peer.AddrInfo
