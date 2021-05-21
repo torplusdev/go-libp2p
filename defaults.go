@@ -10,11 +10,11 @@ import (
 	noise "github.com/libp2p/go-libp2p-noise"
 	pstoremem "github.com/libp2p/go-libp2p-peerstore/pstoremem"
 	tls "github.com/libp2p/go-libp2p-tls"
-	tor "paidpiper.com/go-libp2p-onion-transport"
 	yamux "github.com/libp2p/go-libp2p-yamux"
 	tcp "github.com/libp2p/go-tcp-transport"
 	ws "github.com/libp2p/go-ws-transport"
 	multiaddr "github.com/multiformats/go-multiaddr"
+	tor "paidpiper.com/go-libp2p-onion-transport"
 )
 
 // DefaultSecurity is the default security option.
@@ -41,12 +41,12 @@ var DefaultMuxers = ChainOptions(
 // libp2p instead of replacing them.
 var DefaultTransports = ChainOptions(
 	Transport(tcp.NewTCPTransport),
-//	OnionTransport,
+	//	OnionTransport,
 	Transport(ws.New),
 )
 
 var OnionTransport Option = func(cfg *Config) error {
-	return cfg.Apply(Transport(tor.NewOnionTransportC(cfg.TorPath,cfg.TorConfigPath,"", nil, cfg.TorPath, true, cfg.SupportNonAnonymous)))
+	return cfg.Apply(Transport(tor.NewOnionTransportC(cfg.TorPath, cfg.TorDataDir, cfg.TorConfigPath, "", nil, cfg.TorPath, true, cfg.SupportNonAnonymous)))
 }
 
 // DefaultPeerstore configures libp2p to use the default peerstore.

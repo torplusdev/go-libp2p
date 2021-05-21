@@ -204,7 +204,16 @@ func TorPath(path string) Option {
 	}
 }
 
-func TorConfigPath(path string ) Option {
+// Set tor path
+func TorDataDir(path string) Option {
+	return func(cfg *Config) error {
+		cfg.TorDataDir = path
+
+		return nil
+	}
+}
+
+func TorConfigPath(path string) Option {
 	return func(cfg *Config) error {
 		cfg.TorConfigPath = path
 
@@ -212,15 +221,13 @@ func TorConfigPath(path string ) Option {
 	}
 }
 
-func SupportNonAnonymous(supportNonAnonymouys bool ) Option {
+func SupportNonAnonymous(supportNonAnonymouys bool) Option {
 	return func(cfg *Config) error {
 		cfg.SupportNonAnonymous = supportNonAnonymouys
 
 		return nil
 	}
 }
-
-
 
 // AddrsFactory configures libp2p to use the given address factory.
 func AddrsFactory(factory config.AddrsFactory) Option {

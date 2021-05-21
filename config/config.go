@@ -92,8 +92,9 @@ type Config struct {
 	EnableAutoRelay bool
 
 	// Onion transfer config
-	TorPath	string
-	TorConfigPath	string
+	TorPath             string
+	TorDataDir          string
+	TorConfigPath       string
 	SupportNonAnonymous bool
 
 	AutoNATConfig
