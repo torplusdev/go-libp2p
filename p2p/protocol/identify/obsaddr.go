@@ -2,6 +2,7 @@ package identify
 
 import (
 	"context"
+	"fmt"
 	"sort"
 	"sync"
 	"time"
@@ -338,7 +339,7 @@ func (oas *ObservedAddrManager) maybeRecordObservation(conn network.Conn, observ
 	if manet.IsIPLoopback(observed) {
 		return
 	}
-
+	fmt.Println("DEBUG: maybeRecordObservation")
 	// we should only use ObservedAddr when our connection's LocalAddr is one
 	// of our ListenAddrs. If we Dial out using an ephemeral addr, knowing that
 	// address's external mapping is not very useful because the port will not be

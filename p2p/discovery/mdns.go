@@ -3,6 +3,7 @@ package discovery
 import (
 	"context"
 	"errors"
+	"fmt"
 	"io"
 	"net"
 	"sync"
@@ -49,6 +50,7 @@ type mdnsService struct {
 
 func getDialableListenAddrs(ph host.Host) ([]*net.TCPAddr, error) {
 	var out []*net.TCPAddr
+	fmt.Println("DEBUG: getDialableListenAddrs")
 	addrs, err := ph.Network().InterfaceListenAddresses()
 	if err != nil {
 		return nil, err
