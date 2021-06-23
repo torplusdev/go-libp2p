@@ -41,7 +41,7 @@ import (
 const maxAddressResolution = 32
 
 // addrChangeTickrInterval is the interval between two address change ticks.
-var addrChangeTickrInterval = 5 * time.Second
+var addrChangeTickrInterval = 5 * time.Minute
 
 var log = logging.Logger("basichost")
 
